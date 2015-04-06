@@ -57,7 +57,7 @@ crashlytics-build.properties
 
 
 ### Bower ###
-bower_components
+public/packages/
 .bower-cache
 .bower-registry
 .bower-tmp
@@ -74,5 +74,8 @@ composer.lock
 
 ### Vagrant ###
 .vagrant/
+
+### Node ###
+npm-debug.log
 
 

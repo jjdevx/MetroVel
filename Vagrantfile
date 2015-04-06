@@ -41,17 +41,10 @@ Vagrant.configure(2) do |config|
   config.vm.define "MetroLaravel" do |jel|
   end
 
-  if Vagrant.has_plugin?("vagrant-hostmanager")
-    config.hostmanager.enabled = true
-    config.hostmanager.manage_host = true
-    config.hostmanager.ignore_private_ip = false
-    config.hostmanager.include_offline = false
-  end
-
   config.vm.hostname = hostname
 
   # Create a static IP
-  config.vm.network :public_network
+  config.vm.network "private_network", type: "dhcp"
   config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
   config.vm.provider :virtualbox do |vb|
@@ -87,8 +80,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "#{url}/scripts/composer.sh", privileged: false, args: composer_packages.join(" ")
 
   config.vm.provision "shell",
-      inline: "cd /vagrant/",
       inline: "npm install -g bower",
-      inline: "composer install"
+      inline: "cd /vagrant && bower install"
+      inline: "cd /vagrant && composer install"
 #
 end
