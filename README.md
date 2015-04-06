@@ -14,4 +14,4 @@
 [![GratiPay](https://img.shields.io/gratipay/aasanchez.svg)]
 
 ##Version 
-3.7.0
+Metronic Version: 3.7.0
