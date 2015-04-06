@@ -57,31 +57,28 @@ Vagrant.configure(2) do |config|
   end
 
   # Entonamiento Basico del Sistema Operativo
-  config.vm.provision "shell", path: "#{url}/scripts/base.sh", args: [url, server_swap, server_timezone]
-  config.vm.provision "shell", path: "#{url}/scripts/php.sh", args: [php_timezone, hhvm, php_version]
-  config.vm.provision "shell", path: "#{url}/scripts/nodejs.sh"
+  # config.vm.provision "shell", path: "#{url}/scripts/base.sh", args: [url, server_swap, server_timezone]
+  # config.vm.provision "shell", path: "#{url}/scripts/php.sh", args: [php_timezone, hhvm, php_version]
+  # config.vm.provision "shell", path: "#{url}/scripts/nodejs.sh"
 
   ####
   # Web Servers
   ##########
   # Provision Nginx Base
-  config.vm.provision "shell", path: "#{url}/scripts/nginx.sh", args: [server_ip, public_folder, hostname, url]
+  # config.vm.provision "shell", path: "#{url}/scripts/nginx.sh", args: [server_ip, public_folder, hostname, url]
 
   ##########
   # Databases
   ##########
   # Provision PostgreSQL
-  config.vm.provision "shell", path: "#{url}/scripts/pgsql.sh", args: ddbb_root_password
+  # config.vm.provision "shell", path: "#{url}/scripts/pgsql.sh", args: ddbb_root_password
 
   ##########
   # Utiles
   ##########
   # Provision Composer
-  config.vm.provision "shell", path: "#{url}/scripts/composer.sh", privileged: false, args: composer_packages.join(" ")
+  # config.vm.provision "shell", path: "#{url}/scripts/composer.sh", privileged: false, args: composer_packages.join(" ")
 
-  config.vm.provision "shell",
-      inline: "npm install -g bower",
-      inline: "cd /vagrant && bower install",
-      inline: "cd /vagrant && composer install"
+  # config.vm.provision "shell", path: "provision.sh"
 #
 end
