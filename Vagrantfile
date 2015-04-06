@@ -79,6 +79,6 @@ Vagrant.configure(2) do |config|
   # Provision Composer
   # config.vm.provision "shell", path: "#{url}/scripts/composer.sh", privileged: false, args: composer_packages.join(" ")
 
-  # config.vm.provision "shell", path: "provision.sh"
+  config.vm.provision :shell, :path => "bootstrap.sh"
 #
 end
