@@ -11,7 +11,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aasanchez/MetroLaravel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aasanchez/metrolaravel/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aasanchez/MetroLaravel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![GratiPay](https://img.shields.io/gratipay/aasanchez.svg)]
+[![GratiPay](https://img.shields.io/gratipay/aasanchez.svg)](https://gitter.im/aasanchez/MetroLaravel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ##Version 
 Metronic Version: 3.7.0
