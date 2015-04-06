@@ -81,7 +81,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell",
       inline: "npm install -g bower",
-      inline: "cd /vagrant && bower install"
+      inline: "cd /vagrant && bower install",
       inline: "cd /vagrant && composer install"
 #
 end
