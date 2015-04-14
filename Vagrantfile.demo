@@ -1,10 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-hostname = "jelbox.io"
-
+hostname = "metrolaravel.io"
 #Url de provisioning
-
 url = "https://raw.githubusercontent.com/aasanchez/WEbBOot/master"
 
 # Variables de red
@@ -37,7 +35,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty32"
   config.vm.box_check_update = false
 
-  config.vm.define "JelBox" do |jb|
+  config.vm.define "MetroLaravel" do |MtL|
   end
 
   config.vm.hostname = hostname
@@ -54,7 +52,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "JelBox"
+    vb.name = "MetroLaravel"
     # Set server cpus
     vb.customize ["modifyvm", :id, "--cpus", server_cpus]
     # Set server memory
