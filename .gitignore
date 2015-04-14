@@ -74,6 +74,7 @@ composer.lock
 
 ### Vagrant ###
 .vagrant/
+Vagrantfile
 
 ### Node ###
 npm-debug.log
