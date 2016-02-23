@@ -3,7 +3,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aasanchez/MetroLaravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aasanchez/MetroLaravel/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/aasanchez/MetroLaravel/badges/build.png?b=master)](https://scrutinizer-ci.com/g/aasanchez/MetroLaravel/build-status/master)
 [![Code Coverage](https://scrutinizer-ci.com/g/aasanchez/MetroLaravel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/aasanchez/MetroLaravel/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/04aab215-768b-4a42-9d60-b66d80d8a7dd/mini.png)](https://insight.sensiolabs.com/projects/04aab215-768b-4a42-9d60-b66d80d8a7dd)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/391387fe-829f-4a8b-9d44-56942437ad8b/mini.png)](https://insight.sensiolabs.com/projects/391387fe-829f-4a8b-9d44-56942437ad8b)
 [![Coverage Status](https://coveralls.io/repos/aasanchez/MetroLaravel/badge.svg)](https://coveralls.io/r/aasanchez/MetroLaravel)
 [![Code Climate](https://codeclimate.com/github/aasanchez/MetroLaravel/badges/gpa.svg)](https://codeclimate.com/github/aasanchez/MetroLaravel)
 [![Build status](https://ci.appveyor.com/api/projects/status/tmn9u0he5rd2a7ob?svg=true)](https://ci.appveyor.com/project/aasanchez/metrolaravel)
