@@ -14,7 +14,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-sleep 1
 apt-get update
 apt-get install -qq curl unzip git-core ack-grep software-properties-common \
 build-essential dbus nano aptitude supervisor
@@ -23,7 +22,6 @@ service apparmor stop
 update-rc.d -f apparmor remove
 apt-get remove -qq apparmor apparmor-utils
 
-# Definimos que las actualizaciones de seguridad puedan instalarse automaticamente
 apt-get install -qq unattended-upgrades
 echo "APT::Periodic::Unattended-Upgrade \"1\";" >> /etc/apt/apt.conf.d/10periodic
 
@@ -65,14 +63,20 @@ echo -e "deb http://nginx.org/packages/ubuntu/ trusty nginx" >> /etc/apt/sources
 aptitude update
 aptitude install -y nginx
 
-mkdir -p /var/www/logs/
-sudo chgrp -R www-data /var/www
-sudo chmod -R g+rw /var/www
-sudo chmod g+s /var/www
+usermod -a -G www-data vagrant
 
-chmod -R 755 /var/www/logs
-touch /var/www/logs/access.log
-touch /var/www/logs/error.log
+mkdir -p /home/vagrant/logs
+touch /home/vagrant/logs/access.log
+touch /home/vagrant/logs/error.log
+
+cd /vagrant/storage && find . -type d -exec chmod 775 {} \; && find . -type f -exec chmod 664 {} \;
+cd /vagrant/storage && chown vagrant:vagrant .gitignore logs/.gitignore
+
+chmod -R 777 /vagrant/storage
+
+chgrp www-data /vagrant
+
+chown -R www-data:www-data /vagrant/storage
 
 SSL_DIR="/etc/ssl"
 DOMAIN="*.xip.io"
@@ -86,16 +90,16 @@ commonName=bastion
 organizationalUnitName=
 emailAddress=
 "
-sudo mkdir -p "$SSL_DIR"
-sudo openssl genrsa -out "$SSL_DIR/ssl.key" 1024
-sudo openssl req -new -subj "$(echo -n "$SUBJ" | tr "\n" "/")" -key "$SSL_DIR/ssl.key" -out "$SSL_DIR/ssl.csr" -passin pass:$PASSPHRASE
-sudo openssl x509 -req -days 365 -in "$SSL_DIR/ssl.csr" -signkey "$SSL_DIR/ssl.key" -out "$SSL_DIR/ssl.crt"
+mkdir -p "$SSL_DIR"
+openssl genrsa -out "$SSL_DIR/ssl.key" 1024
+openssl req -new -subj "$(echo -n "$SUBJ" | tr "\n" "/")" -key "$SSL_DIR/ssl.key" -out "$SSL_DIR/ssl.csr" -passin pass:$PASSPHRASE
+openssl x509 -req -days 365 -in "$SSL_DIR/ssl.csr" -signkey "$SSL_DIR/ssl.key" -out "$SSL_DIR/ssl.crt"
 
 > /etc/nginx/conf.d/default.conf
 cat <<EOF >/etc/nginx/conf.d/default.conf
 server {
     listen 80;
-    root /vagrant/www;
+    root /vagrant/public;
     index index.php;
 
     server_name metrolaravel.dev;
@@ -133,48 +137,6 @@ server {
     }
 
 }
-server {
-    listen 443;
-    ssl on;
-    ssl_certificate     /etc/ssl/ssl.crt;
-    ssl_certificate_key /etc/ssl/ssl.key;
-    root /vagrant/www;
-    index index.php;
-    # Make site accessible from ...
-    server_name metrolaravel.dev;
-    access_log /home/vagrant/logs/access.log;
-    error_log  /home/vagrant/logs/error.log error;
-    charset utf-8;
-    location / {
-        try_files \$uri \$uri/ /index.php?\$query_string;
-    }
-    location = /favicon.ico { log_not_found off; access_log off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-    error_page 404 /index.php;
-    # pass the PHP scripts to php5-fpm
-    # Note: \.php$ is susceptible to file upload attacks
-    # Consider using: "location ~ ^/(index|app|app_dev|config)\.php(/|$) {"
-    location ~ \.php$ {
-        try_files \$uri =404;
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        # With php5-fpm:
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-        fastcgi_param LARA_ENV local; # Environment variable for Laravel
-        fastcgi_param HTTPS on;
-    }
-    # Deny .htaccess file access
-    location ~ /\.ht {
-        deny all;
-    }
-    location = /nginx_status {
-        stub_status on;
-        allow 127.0.0.1;
-        deny all;
-    }
-}
 EOF
 
 service php5-fpm restart
@@ -183,8 +145,12 @@ service nginx restart
 echo ">>> Installing SQLite Server"
 
 # Install SQL lite
-sudo apt-get install -qq sqlite
+apt-get install -qq sqlite
 
 cd /vagrant && composer install
 cp /vagrant/.env.example /vagrant/.env
-php artisan key:generate
+
+cd /vagrant && php artisan cache:clear
+
+service nginx restart
+service php5-fpm restart
