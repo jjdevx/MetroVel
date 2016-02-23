@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace MetroLaravel\Http\Controllers\Auth;
 
-use App\User;
+use MetroLaravel\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use MetroLaravel\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

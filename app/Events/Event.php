@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace MetroLaravel\Events;
 
 abstract class Event
 {
