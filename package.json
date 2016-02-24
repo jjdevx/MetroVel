@@ -1,10 +1,15 @@
 {
   "private": true,
   "devDependencies": {
-    "gulp": "^3.8.8"
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "laravel-elixir-delete": "^1.0.1"
   },
   "dependencies": {
+    "bootstrap": "3.3.6",
+    "bootstrap-switch": "^3.3.2",
+    "font-awesome": "4.4.0",
     "laravel-elixir": "^4.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "simple-line-icons-webfont": "4.0.0"
   }
 }

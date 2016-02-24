@@ -15,3 +15,6 @@ storage/
 
 ### Composer ###
 composer.lock
+
+public/css
+public/fonts
