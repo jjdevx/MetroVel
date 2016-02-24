@@ -12,5 +12,6 @@
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aasanchez/metrolaravel/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![GratiPay](https://img.shields.io/gratipay/aasanchez.svg)](https://gitter.im/aasanchez/MetroLaravel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+[![Coverage Status](https://coveralls.io/repos/github/aasanchez/MetroLaravel/badge.svg?branch=master)](https://coveralls.io/github/aasanchez/MetroLaravel?branch=master)
 ##Version 
-Metronic Version: 3.7.0
+Metronic Version: 4.5.4
