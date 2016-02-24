@@ -14,7 +14,8 @@ var del = require('del');
 elixir(function (mix) {
     return del([
         'public/css/',
-        'public/fonts/'
+        'public/fonts/',
+        'public/images/'
     ]);
 });
 
@@ -30,6 +31,17 @@ elixir(function (mix) {
     mix.copy('node_modules/bootstrap/dist/fonts/', 'public/fonts/');
 
     mix.copy('node_modules/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css', 'public/css/bootstrap-switch.css');
+
+    mix.copy('resources/assets/uniformjs/uniform.default.css', 'public/css/uniform.default.css');
+    mix.copy('resources/assets/uniformjs/images/', 'public/images/');
+
+    mix.copy('node_modules/daterangepicker/daterangepicker-bs3.css', 'public/css/daterangepicker.css');
+
+    mix.copy('node_modules/morris.js/morris.css', 'public/css/morris.css');
+
+    mix.copy('node_modules/fullcalendar/dist/fullcalendar.css', 'public/css/fullcalendar.css');
+
+    mix.copy('node_modules/jqvmap/jqvmap/jqvmap.css', 'public/css/jqvmap.css');
 
 });
 

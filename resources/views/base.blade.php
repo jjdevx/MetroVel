@@ -32,10 +32,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-switch.css') }}"/>
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/morris.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fullcalendar.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jqvmap.css') }}"/>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="../assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
