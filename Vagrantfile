@@ -7,30 +7,17 @@ github_repo     = "Vaprobash"
 github_branch   = "1.4.2"
 github_url      = "https://raw.githubusercontent.com/#{github_username}/#{github_repo}/#{github_branch}"
 
-# Because this:https://developer.github.com/changes/2014-12-08-removing-authorizations-token/
-# https://github.com/settings/tokens
 github_pat          = ""
 
 # Server Configuration
 
-hostname        = "malta4let.dev"
+hostname        = "metrolaravel.dev"
 
-# Set a local private network IP address.
-# See http://en.wikipedia.org/wiki/Private_network for explanation
-# You can use the following IP ranges:
-#   10.0.0.1    - 10.255.255.254
-#   172.16.0.1  - 172.31.255.254
-#   192.168.0.1 - 192.168.255.254
 server_ip             = "10.10.10.14"
 server_cpus           = "1"   # Cores
 server_memory         = "384" # MB
 server_swap           = "768" # Options: false | int (MB) - Guideline: Between one or two times the server_memory
 
-# UTC        for Universal Coordinated Time
-# EST        for Eastern Standard Time
-# CET        for Central European Time
-# US/Central for American Central
-# US/Eastern for American Eastern
 server_timezone  = "UTC"
 
 # Languages and Packages
@@ -48,9 +35,7 @@ composer_packages     = [        # List any global Composer packages that you wa
   #"squizlabs/php_codesniffer:1.5.*",
 ]
 
-# Default web server document root
-# Symfony's public directory is assumed "web"
-# Laravel's public directory is assumed "public"
+
 public_folder         = "/vagrant"
 
 laravel_root_folder   = "/vagrant" # Where to install Laravel. Will `composer install` if a composer.json file exists
@@ -59,7 +44,7 @@ laravel_version       = "latest-stable" # If you need a specific version of Lara
 nodejs_version        = "latest"   # By default "latest" will equal the latest stable version
 nodejs_packages       = [          # List any global NodeJS packages that you want to install
   #"grunt-cli",
-  #"gulp",
+  "gulp",
   #"bower",
   #"yo",
 ]
@@ -69,7 +54,7 @@ Vagrant.configure("2") do |config|
   # Set server to Ubuntu 14.04
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.define "Vaprobash" do |vapro|
+  config.vm.define "MetroVel" do |metvel|
   end
 
   if Vagrant.has_plugin?("vagrant-hostmanager")
@@ -161,4 +146,5 @@ Vagrant.configure("2") do |config|
   # Provision Laravel
   config.vm.provision "shell", path: "#{github_url}/scripts/laravel.sh", privileged: false, args: [server_ip, laravel_root_folder, public_folder, laravel_version]
 
+  config.vm.provision "shell", path: "bootstrap.sh"
 end
