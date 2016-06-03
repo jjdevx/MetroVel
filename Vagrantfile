@@ -43,10 +43,7 @@ laravel_version       = "latest-stable" # If you need a specific version of Lara
 
 nodejs_version        = "latest"   # By default "latest" will equal the latest stable version
 nodejs_packages       = [          # List any global NodeJS packages that you want to install
-  #"grunt-cli",
   "gulp",
-  #"bower",
-  #"yo",
 ]
 
 Vagrant.configure("2") do |config|
@@ -57,13 +54,6 @@ Vagrant.configure("2") do |config|
   config.vm.define "MetroVel" do |metvel|
   end
 
-  if Vagrant.has_plugin?("vagrant-hostmanager")
-    config.hostmanager.enabled = true
-    config.hostmanager.manage_host = true
-    config.hostmanager.ignore_private_ip = false
-    config.hostmanager.include_offline = false
-  end
-
   config.vm.hostname = hostname
 
   config.vm.network :private_network, ip: server_ip
@@ -71,10 +61,7 @@ Vagrant.configure("2") do |config|
 
   config.ssh.forward_agent = true
 
-  config.vm.synced_folder ".", "/vagrant",
-    id: "core",
-    :nfs => true,
-    :mount_options => ['nolock,vers=3,udp,noatime,actimeo=2,fsc']
+  config.vm.synced_folder ".", "/vagrant"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = hostname
@@ -83,7 +70,7 @@ Vagrant.configure("2") do |config|
     vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
   end
 
-  config.vm.provision "shell", path: "install.sh"
+  #config.vm.provision "shell", path: "install.sh"
   config.vm.provision "shell", path: "#{github_url}/scripts/base.sh", args: [github_url, server_swap, server_timezone]
   config.vm.provision "shell", path: "#{github_url}/scripts/base_box_optimizations.sh", privileged: true
 
